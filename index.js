@@ -7,7 +7,11 @@ app.set('port', (process.env.PORT || 5000))
 
 app.get('/', function(request, response) {
 var software = parser(request.get('user-agent'))
-var ip = request.ip
+var ip = request.headers['x-forwarded-for'] ||
+     request.connection.remoteAddress ||
+     request.socket.remoteAddress ||
+     request.connection.socket.remoteAddress;
+ console.log(ip);
 var language = request.get('accept-language')
 var userObject = {
   "ip-address": ip,
