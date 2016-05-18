@@ -21,5 +21,5 @@ console.log('language: ' + language.split(',')[0])
 })
 
 app.listen(app.get('port'), '127.0.0.1', function() {
-  console.log('node is running on port 5000...')
+  console.log('node is running on port', app.get('port') )
 })
